@@ -1,0 +1,29 @@
+version: '3.5'
+
+services:
+
+  db:
+    image: postgres:10.5
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=sport_stats
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+
+  flask:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - "db:db"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - "db"
+    environment:
+      - DBNAME=sport_stats
+      - DBUSER=myuser
+      - DBPASS=mypassword
+      - DBHOST=db
