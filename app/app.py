@@ -48,3 +48,24 @@ def register_guest():
 
     return render_template('guest_confirmation.html',
         name=name, email=email, partysize=partysize)
+
+# error message
+@APP.route('/hello')
+def apm_message_hello():
+    apm.capture_message('hello, world!')
+    return render_template('apm_hello.html')
+
+# Error
+@APP.route('/error')
+def apm_error():
+    try:
+        1 / 0
+    except ZeroDivisionError:
+        apm.capture_exception()
+    return render_template('apm_error.html')
+
+# Unhandled error
+@APP.route('/fatal_error')
+def apm_fatal_error():
+    1 / 0
+    return render_template('apm_error.html')
