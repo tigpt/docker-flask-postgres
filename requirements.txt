@@ -16,3 +16,5 @@ python-editor==1.0.3
 six==1.10.0
 SQLAlchemy==1.1.9
 Werkzeug==0.12.1
+elastic-apm==6.2.2
+blinker==1.4

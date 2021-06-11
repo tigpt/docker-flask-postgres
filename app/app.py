@@ -1,3 +1,4 @@
+from elasticapm.contrib.flask import ElasticAPM
 import os
 
 from flask import Flask, request, render_template
@@ -5,6 +6,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 APP = Flask(__name__)
+apm = ElasticAPM(APP)
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 APP.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://%s:%s@%s/%s' % (
