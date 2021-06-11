@@ -6,6 +6,8 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 APP = Flask(__name__)
+APP.config['ELASTIC_APM'] = {
+}
 apm = ElasticAPM(APP)
 APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
