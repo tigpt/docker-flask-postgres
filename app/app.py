@@ -28,6 +28,12 @@ def view_registered_guests():
     guests = Guest.query.all()
     return render_template('guest_list.html', guests=guests)
 
+@APP.route('/bad_query')
+def view_registered_guests_bad_query():
+    for _ in range(20):
+        guests = Guest.query.all()
+    return render_template('guest_list.html', guests=guests)
+
 
 @APP.route('/register', methods = ['GET'])
 def view_registration_form():
